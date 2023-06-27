@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>カメラ</title>
+  <link rel="icon" href="https://scfcdv.github.io/homeweb2/favicon.ico">
+</head>
+<body>
+  <video id="camera-preview" autoplay width="100%" height="100%"></video>
+  <canvas id="captured-image" style="display: none;"></canvas>
+  <div id="gallery"></div>
+
+  <script>
+    var videoElement = document.getElementById('camera-preview');
+    var canvasElement = document.getElementById('captured-image');
+    var captureButton = document.getElementById('capture-button');
+    var galleryElement = document.getElementById('gallery');
+
+    // カメラを取得してビデオ要素に表示する
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        videoElement.srcObject = stream;
+      })
+      .catch(function(error) {
+        console.log('カメラのアクセスに失敗しました: ', error);
+      });
+  </script>
+
+  <style>
+    .captured-image {
+      display: block;
+      margin: 10px;
+    }
+  </style>
+</body>
+</html>
